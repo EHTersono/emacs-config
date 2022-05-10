@@ -7,3 +7,4 @@ elpa
 *.old
 .frame.el
 transient
+url
