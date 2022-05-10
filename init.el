@@ -1,4 +1,4 @@
-;; originally based on: Emacs4CL 0.4.0 <https://github.com/susam/emacs4cl>
+;;; originally based on: Emacs4CL 0.4.0 <https://github.com/susam/emacs4cl>
 
 ;; Customize user interface.
 ;; get rid of interface elements that cause clutter
