@@ -255,3 +255,13 @@
 (setq org-hide-emphasis-markers t
       org-pretty-entities t ; special symbols, such as superscript and subscript (x^2 or x_2), /alpha, ...
       )
+
+
+
+
+;;; misc
+;; needs the font 'hack' installed
+(defun hack-font ()
+  (interactive)
+  (set-face-attribute 'default nil :font "Hack"))
+
