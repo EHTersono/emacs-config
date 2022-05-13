@@ -86,6 +86,13 @@
 (require 'use-package)
 (setq use-package-always-ensure t)
 
+
+;;;
+;; keep everything clean
+;; @TODO
+
+
+
 ;; Install packages.
 (dolist (package '(slime paredit rainbow-delimiters))
   (unless (package-installed-p package)
@@ -203,7 +210,7 @@
 ;;;;;;;;;;;;;;;;;;;;
 ; org mode 
 
-; set vatiables for each orgmode buffer
+; set variables for each orgmode buffer
 (defun jhl/org-mode-setup ()
   (org-indent-mode)
   (variable-pitch-mode 1)
@@ -260,8 +267,10 @@
 
 
 ;;; misc
+;; 
+;; now you can switch to hack by calling the function below
 ;; needs the font 'hack' installed
-(defun hack-font ()
+(defun font/hack ()
   (interactive)
   (set-face-attribute 'default nil :font "Hack"))
 
