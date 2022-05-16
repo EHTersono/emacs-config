@@ -8,3 +8,4 @@ elpa
 .frame.el
 transient
 url
+eshell

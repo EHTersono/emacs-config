@@ -270,7 +270,13 @@
 ;; 
 ;; now you can switch to hack by calling the function below
 ;; needs the font 'hack' installed
+
+
 (defun font/hack ()
   (interactive)
   (set-face-attribute 'default nil :font "Hack"))
+
+(defun font/noto ()
+  (interactive)
+  (set-face-attribute 'default nil :font "Noto Sans UI" :weight 'medium ))
 
