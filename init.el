@@ -193,7 +193,7 @@
 ;
 (slime-setup '(slime-fancy slime-company))
 
-;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;
 ;; nicer looking modeline
 ;;
 (use-package doom-modeline
