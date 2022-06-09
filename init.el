@@ -263,7 +263,13 @@
       org-pretty-entities t ; special symbols, such as superscript and subscript (x^2 or x_2), /alpha, ...
       )
 
+(defun jhl/org-mode-visual-fill ()
+  (setq visual-fill-column-width 80
+        visual-fill-column-center-text t)
+  (visual-fill-column-mode 1))
 
+(use-package visual-fill-column
+  :hook (org-mode . jhl/org-mode-visual-fill))
 
 
 ;;; misc
