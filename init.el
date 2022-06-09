@@ -268,15 +268,32 @@
 
 ;;; misc
 ;; 
-;; now you can switch to hack by calling the function below
-;; needs the font 'hack' installed
+;; now you can switch fonts by calling the functions below
+;; of course, these functions need the proper fonts installed.
+;; all these functions have a fixed with as default font.
+;; for modes that need a variable pitch font set an appropriate hook
 
-
-(defun font/hack ()
+(defun font/hack-vera ()
   (interactive)
-  (set-face-attribute 'default nil :font "Hack"))
+  (set-face-attribute 'default        nil :font "Hack" :weight 'medium )
+  (set-face-attribute 'fixed-pitch    nil :font "Hack" :weight 'medium )
+  (set-face-attribute 'variable-pitch nil :font "Bitstream Vera Sans" :weight 'medium ))
+
 
 (defun font/noto ()
   (interactive)
-  (set-face-attribute 'default nil :font "Noto Sans UI" :weight 'medium ))
+  (set-face-attribute 'default        nil :font "Noto Mono" :weight 'medium )
+  (set-face-attribute 'fixed-pitch    nil :font "Noto Mono" :weight 'medium )
+  (set-face-attribute 'variable-pitch nil :font "Noto Sans UI" :weight 'medium ))
 
+(defun font/dejavu ()
+  (interactive)
+  (set-face-attribute 'default        nil :font "DejaVU Sans Mono" :weight 'medium )
+  (set-face-attribute 'fixed-pitch    nil :font "DejaVu Sans Mono" :weight 'medium )
+  (set-face-attribute 'variable-pitch nil :font "DejaVu Sans" :weight 'medium ))
+
+(defun font/fira ()
+  (interactive)
+  (set-face-attribute 'default        nil :font "Fira Mono" :weight 'medium )
+  (set-face-attribute 'fixed-pitch    nil :font "Fira Mono" :weight 'medium )
+  (set-face-attribute 'variable-pitch nil :font "Fira Sans" :weight 'medium ))
