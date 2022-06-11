@@ -264,12 +264,31 @@
       )
 
 (defun jhl/org-mode-visual-fill ()
-  (setq visual-fill-column-width 80
+  (setq visual-fill-column-width 96
         visual-fill-column-center-text t)
   (visual-fill-column-mode 1))
 
 (use-package visual-fill-column
   :hook (org-mode . jhl/org-mode-visual-fill))
+
+;;-------------
+;; org-babel
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((emacs-lisp . t)
+   (lisp . t)))
+
+;; -----
+;; structure templates
+(require 'org-tempo)
+
+(add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
+(add-to-list 'org-structure-template-alist '("li" . "src lisp"))
+(add-to-list 'org-structure-template-alist '("sh" . "src shell"))
+
+;; no nagging when C-c C-c evaluating source code blocks
+(setq org-confirm-babel-evaluate nil)
+
 
 
 ;;; misc
@@ -303,3 +322,5 @@
   (set-face-attribute 'default        nil :font "Fira Mono" :weight 'medium )
   (set-face-attribute 'fixed-pitch    nil :font "Fira Mono" :weight 'medium )
   (set-face-attribute 'variable-pitch nil :font "Fira Sans" :weight 'medium ))
+
+
