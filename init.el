@@ -10,13 +10,15 @@
 
 (setq inhibit-startup-screen t)
 
-;; Pick a theme.
-(load-theme 'wombat t)
-(set-face-background 'default "#111")
+;;;
+;; all kind of preferences
+(delete-selection-mode 1)
+
 
 ;;;;;;;;;
-;; I really like emacs to open with a frame the size when i last closed it.
-;; I took the code to save and restore frame size when closing/opening emacs
+;; Restoring frame-size
+;; When opened from a  windowing system, open emacs with the frame size it was closed with.
+;; This code to save and restore frame size when closing/opening emacs
 ;; from the portacle config files: https://github.com/portacle/emacsd
 ;; and adapted it for my setup. An emacs lisp file to set the previous frame size
 ;; will be saved in the user-emacs-directory.
@@ -90,6 +92,32 @@
 ;;;
 ;; keep everything clean
 ;; @TODO
+;;
+
+
+;;; Pick a theme.
+;;(load-theme 'wombat t)
+;;(set-face-background 'default "#111")
+
+;;;
+;; modus themes
+;; https://protesilaos.com/emacs/modus-themes#h:1af85373-7f81-4c35-af25-afcef490c111
+;;; For the built-in themes which cannot use `require':
+;; Add all your customizations prior to loading the themes
+;;
+;;
+(unless (package-installed-p 'modus-themes)
+  (package-install 'modus-themes))
+
+(setq modus-themes-italic-constructs t
+      modus-themes-bold-constructs nil
+      modus-themes-region '(bg-only no-extend)
+      )
+;;
+;; Load the theme of your choice:
+;;(load-theme 'modus-operandi t) ;; OR
+(load-theme 'modus-vivendi t)
+(define-key global-map (kbd "<f5>") #'modus-themes-toggle)
 
 
 
@@ -98,9 +126,26 @@
   (unless (package-installed-p package)
     (package-install package)))
 
+;;-------------------------
+;;
+;;slime-configuration
 ;; Configure SBCL as the Lisp program for SLIME.
 (add-to-list 'exec-path "/usr/local/bin")
 (setq inferior-lisp-program "sbcl")
+
+;; sensible return settings for edditing in the REPL
+(add-hook 'slime-repl-mode-hook 'set-slime-repl-return)
+
+(defun set-slime-repl-return ()
+  (define-key slime-repl-mode-map (kbd "RET") 'slime-repl-return-at-end)
+  (define-key slime-repl-mode-map (kbd "<return>") 'slime-repl-return-at-end))
+
+(defun slime-repl-return-at-end ()
+  (interactive)
+  (if (<= (point-max) (point))
+      (slime-repl-return)
+    (slime-repl-newline-and-indent)))
+
 
 ;; Enable Paredit.
 (add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode)
@@ -132,6 +177,7 @@
 (set-face-foreground 'rainbow-delimiters-depth-7-face "#ccc")  ; light gray
 (set-face-foreground 'rainbow-delimiters-depth-8-face "#999")  ; medium gray
 (set-face-foreground 'rainbow-delimiters-depth-9-face "#666")  ; dark gray
+
 
 
 ;;;;;;;;;;;;;;;;;;;;;
@@ -199,7 +245,7 @@
 (use-package doom-modeline
   :ensure t
   :init (doom-modeline-mode 1)
-  :custom ((doom-modeline-height 11)))
+  :custom ((doom-modeline-height 12)))
 
 ;;;;;;;;;;;;;;;;;;;;;
 ;; magit
@@ -283,7 +329,7 @@
 (require 'org-tempo)
 
 (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
-(add-to-list 'org-structure-template-alist '("li" . "src lisp"))
+(add-to-list 'org-structure-template-alist '("li" . "src lisp :results value verbatim"))
 (add-to-list 'org-structure-template-alist '("sh" . "src shell"))
 
 ;; no nagging when C-c C-c evaluating source code blocks
@@ -323,4 +369,14 @@
   (set-face-attribute 'fixed-pitch    nil :font "Fira Mono" :weight 'medium )
   (set-face-attribute 'variable-pitch nil :font "Fira Sans" :weight 'medium ))
 
+;;(font/dejavu)
 
+
+
+;; todo
+;; highlight-indentation
+;; https://github.com/DarthFennec/highlight-indent-guides
+;; https://github.com/antonj/Highlight-Indentation-for-Emacs/
+;;
+;;
+;; (global-org-modern-mode)
