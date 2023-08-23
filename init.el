@@ -128,7 +128,7 @@
 
 ;;-------------------------
 ;;
-;;slime-configuration
+;; slime-configuration
 ;; Configure SBCL as the Lisp program for SLIME.
 (add-to-list 'exec-path "/usr/local/bin")
 (setq inferior-lisp-program "sbcl")
