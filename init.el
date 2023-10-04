@@ -68,7 +68,6 @@
 ; emacs doesnt load the custom file automatically
 (load custom-file t)
 
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Enable installation of packages from MELPA.
 (require 'package)
@@ -89,10 +88,15 @@
 (setq use-package-always-ensure t)
 
 
+
 ;;;
 ;; keep everything clean
 ;; @TODO
 ;;
+
+;; use meta-arrow keys to move between windows
+(windmove-default-keybindings 'meta)
+;; ToDO: investigate package buffer-move
 
 
 ;;; Pick a theme.

@@ -10,3 +10,5 @@ transient
 url
 eshell
 /server/
+/.#init.el
+custom.el
